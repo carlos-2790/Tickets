@@ -10,36 +10,34 @@ request.open('GET', MostrandoTickets);
 request.responseType = 'json';
 request.send();
 request.onload = function () {
-    const productosInfoComments = request.response;
-    for (let i = 0; i < productosInfoComments.length; i++) {
-        let com = productosInfoComments[i];
-        var estado = "";
-        if (com.status == "SOLVED") {
+  const productosInfoComments = request.response;
+  for (let i = 0; i < productosInfoComments.length; i++) {
+    let com = productosInfoComments[i];
+    var estado = "";
+    if (com.status == "SOLVED") {
 
-            estado = `<p class="card-text badge bg-success text-wrap" style="width: 6rem;">` + com.status + `</p>`
-        } else {
-            estado = ` <p class="card-text badge bg-danger text-wrap" style="width: 6rem;">` + com.status + `</p>`
-        }
+      estado = `<p class="card-text badge bg-success text-wrap" style="width: 6rem;">` + com.status + `</p>`
+    } else {
+      estado = ` <p class="card-text badge bg-danger text-wrap" style="width: 6rem;">` + com.status + `</p>`
+    }
 
 
-        infoHtml += `
+    infoHtml += `
 
-        
         <div class="card" style="width: 18rem;">
         <div class="card-body">
-          <h5 class="card-title">De: `+ com.from + `</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Enviado: `+ com.date + `</h6>
+          <h5 class="card-title">de: `+ com.from + `</h5>
           <p class="card-text">`+ estado + `</p>
           <p class="card-text">`+ com.subject + `</p>
           <p class="card-text">`+ com.body + `</p>
           <p class="card-text">`+ com.ticketId + `</p>
-          
-        </div>
+          <h6 class="card-subtitle mb-2 text-muted">Enviado: `+ com.date + `</h6>
+         </div>
       </div>
 
       `
 
 
-        document.getElementById("uno").innerHTML = infoHtml;
-    }
+    document.getElementById("uno").innerHTML = infoHtml;
+  }
 }
