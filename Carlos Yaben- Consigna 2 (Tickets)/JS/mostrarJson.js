@@ -6,9 +6,9 @@ let infoHtml = "";
 //recursos desde un servidor
 
 const request = new XMLHttpRequest();
-request.open('GET', MostrandoTickets);
-request.responseType = 'json';
-request.send();
+request.open('GET', MostrandoTickets);   /* -->   abrirmos una nueva solicitud utilizando el método open()  */
+request.responseType = 'json';          /*  -->   establecemos el responseType a JSON, de esta forma ese XHR sabe que el servidor estará retornando JSON */
+request.send();                        /*   -->   es convertido en segundo plano en un objeto JavaScript. Entonces se envía la solicitud con el método send()*/
 request.onload = function () {
   const productosInfoComments = request.response;
   for (let i = 0; i < productosInfoComments.length; i++) {
@@ -24,8 +24,8 @@ request.onload = function () {
 
     infoHtml += `
 
-        <div class="card" style="width: 18rem;">
-        <div class="card-body">
+        <div class="card " style="width: 18rem;">
+        <div class="card-body rounded border border-1 border border-secondary">
           <h5 class="card-title">de: `+ com.from + `</h5>
           <p class="card-text">`+ estado + `</p>
           <p class="card-text">`+ com.subject + `</p>
